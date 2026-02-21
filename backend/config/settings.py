@@ -36,7 +36,7 @@ SECRET_KEY: str = config(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['postgresql://library_db_x7nm_user:nzu3zl8KnaGavyZT5HhkDEgnjNkIWp1e@dpg-d6cse77pm1nc739e0rr0-a/library_db_x7nm']
 
 
 # Application definition
