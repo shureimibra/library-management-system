@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
-
+import dj_database_url
 from dotenv import load_dotenv
 from decouple import config 
 # type: ignore
@@ -103,17 +103,24 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-DATABASES: dict[str, dict[str, str]] = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', 'library_db'),
-        'USER': config('DB_USER', 'postgres'),
-        'PASSWORD': config('DB_PASSWORD', 'ibra2020'),
-        'HOST': config('DB_HOST', '127.0.0.1'),
-        'PORT': config('DB_PORT', '5432'),
+if os.environ.get("DATABASE_URL"):
+    DATABASES = {
+        'default': dj_database_url.parse(
+            os.environ.get("DATABASE_URL"),
+            conn_max_age=600)
     }
-}
+else:
+        
+        DATABASES: dict[str, dict[str, str]] = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', 'library_db'),
+            'USER': config('DB_USER', 'postgres'),
+            'PASSWORD': config('DB_PASSWORD', 'ibra2020'),
+            'HOST': config('DB_HOST', '127.0.0.1'),
+            'PORT': config('DB_PORT', '5432'),
+        }
+    }
 
 
 # Password validation
