@@ -76,9 +76,10 @@ MIDDLEWARE: list[str] = [
 
 # CORS (so the React frontend can call this API in the browser)
 # Set CORS_ALLOWED_ORIGINS in .env for production.
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS: list[str] = os.getenv(
     "CORS_ALLOWED_ORIGINS",
-    "http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174,http://localhost:8000,http://127.0.0.1:8000,http://localhost:5175,http://127.0.0.1:5175"
+    "http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174,http://localhost:8000,http://127.0.0.1:8000,http://localhost:5175,http://127.0.0.1:5175,https://library-management-system-frontend-tgbk.onrender.com"
 ).split(",")
 
 ROOT_URLCONF = 'config.urls'
